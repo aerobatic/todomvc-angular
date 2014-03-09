@@ -1,0 +1,18 @@
+{
+  "shim": {
+    "angular": {
+      "exports": "angular"
+    },
+    "angularMocks": {
+      "deps":["angular"],
+      "exports":"angular.mock"
+    }
+  },
+  "paths": {
+   "angular": ["asset!bower_components/angular/angular.min"],
+   "angular-mocks": ["asset!bower_components/angular-mocks/angular-mocks.min"],
+   "angular-route": ["asset!bower_components/angular-mocks/angular-route.min"],
+   "todomvc-common": ["asset!bower_components/todomvc-common/base"]
+  },
+  "mainModule": "js/app"
+}
