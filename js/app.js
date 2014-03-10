@@ -5,8 +5,10 @@
  *
  * @type {angular.Module}
  */
-define(['asset!angular', 'asset!angular-route'], function(angular) {
+define(['angular', 'angular-route'], function(angular) {
 	'use strict';
+
+	var todoMvcApp = angular.module('todomvc', ['ngRoute']);
 
 	var dependencies = [
 		'asset!js/controllers/todoCtrl', 
@@ -14,19 +16,26 @@ define(['asset!angular', 'asset!angular-route'], function(angular) {
 		'asset!js/services/todoStorage',
 		'asset!js/directives/todoEscape',
 		'asset!js/directives/todoFocus',
+		'css!base'
 	];
 
 	require(dependencies, function(todoCtrl, indexHtml) {
-		angular.module('todomvc', ['ngRoute']).config(function ($routeProvider) {
+		todoMvcApp.config(function ($routeProvider) {
 			$routeProvider.when('/', {
-				controller: toDoCtrl,
-				template: indexHtml
+				controller: todoCtrl,
+				templateUrl: 'todomvc-index.html'
 			}).when('/:status', {
-				controller: toDoCtrl,
-				templateUrl: indexHtml
+				controller: todoCtrl,
+				templateUrl: 'todomvc-index.html'
 			}).otherwise({
 				redirectTo: '/'
 			});
 		});
+
+		angular.element(document).ready(function() {
+			// Append index.html to the body
+			angular.element(document.body).append(angular.element(indexHtml));
+	    angular.bootstrap(document, ['todomvc']);
+	  });
 	});
 });

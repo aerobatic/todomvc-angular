@@ -4,7 +4,7 @@
  * Directive that executes an expression when the element it is applied to gets
  * an `escape` keydown event.
  */
-define(['angular'], function() {
+define(['angular'], function(angular) {
 	angular.module('todomvc').directive('todoEscape', function () {
 		'use strict';
 
