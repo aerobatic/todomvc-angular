@@ -20,7 +20,7 @@ define(['angular', 'angular-route'], function(angular) {
 	];
 
 	require(dependencies, function(todoCtrl, indexHtml) {
-		todoMvcApp.config(function ($routeProvider) {
+		todoMvcApp.config(['$routeProvider', function ($routeProvider) {
 			$routeProvider.when('/', {
 				controller: todoCtrl,
 				templateUrl: 'todomvc-index.html'
@@ -30,7 +30,7 @@ define(['angular', 'angular-route'], function(angular) {
 			}).otherwise({
 				redirectTo: '/'
 			});
-		});
+		}]);
 
 		angular.element(document).ready(function() {
 			// Append index.html to the body
