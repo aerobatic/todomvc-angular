@@ -5,9 +5,8 @@
  * - retrieves and persists the model via the todoStorage service
  * - exposes the model to the template and provides event handlers
  */
-
-define(['angular'], function(angular){
-	function TodoCtrl($scope, $routeParams, todoStorage, filterFilter) {
+angular.module('todomvc')
+	.controller('TodoCtrl', function TodoCtrl($scope, $routeParams, $filter, todoStorage) {
 		'use strict';
 
 		var todos = $scope.todos = todoStorage.get();
@@ -16,7 +15,7 @@ define(['angular'], function(angular){
 		$scope.editedTodo = null;
 
 		$scope.$watch('todos', function (newValue, oldValue) {
-			$scope.remainingCount = filterFilter(todos, { completed: false }).length;
+			$scope.remainingCount = $filter('filter')(todos, { completed: false }).length;
 			$scope.completedCount = todos.length - $scope.remainingCount;
 			$scope.allChecked = !$scope.remainingCount;
 			if (newValue !== oldValue) { // This prevents unneeded calls to the local storage
@@ -82,8 +81,4 @@ define(['angular'], function(angular){
 				todo.completed = !completed;
 			});
 		};
-	}
-
-	TodoCtrl.$inject = ['$scope', '$routeParams', 'todoStorage', 'filterFilter'];
-	return TodoCtrl;
-});
+	});

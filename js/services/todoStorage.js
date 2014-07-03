@@ -3,8 +3,8 @@
 /**
  * Services that persists and retrieves TODOs from localStorage
  */
-define(['angular'], function(angular) {
-	angular.module('todomvc').factory('todoStorage', function () {
+angular.module('todomvc')
+	.factory('todoStorage', function () {
 		'use strict';
 
 		var STORAGE_ID = 'todos-angularjs';
@@ -19,4 +19,3 @@ define(['angular'], function(angular) {
 			}
 		};
 	});
-});
